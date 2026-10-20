@@ -1,4 +1,4 @@
-Ai Doccumentation 
+Ai Doccumentation (Commenting out any code cause we are scared that it will break that main program. Added the ai response later as we were unsure if we needed to add it, we went with it do give a more detailed look)
 
 Tool used: Google Gemini 
 
@@ -11,6 +11,73 @@ Prompt: Create a HTML code learning guide for a complete beginner
 Human input: Taking the skills from the output and using that knowledge to create the html file for our friend
 gunter
 
+Response: 
+🧱 1. The Anatomy of an HTML Tag
+
+HTML works using tags, which tell the web browser exactly what kind of content it is looking at. Most tags come in pairs: an opening tag and a closing tag. A closing tag looks exactly like the opening one, but it includes a forward slash (/). Everything inside them makes up an element.
+html
+<!-- <p>This is a paragraph of text.</p>
+ └─ Opening Tag     └─ Content     └─ Closing Tag
+Use code with caution. -->
+
+🏠 2. The Standard Page Blueprint (Boilerplate)
+
+Every standard HTML file requires a specific setup so browsers know how to read it correctly. Create a file named index.html in a text editor (like Visual Studio Code) and paste this essential framework:
+html
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My First Web Page</title>
+</head>
+<body> -->
+
+    <!-- Everything displayed to your visitors goes here! -->
+
+<!-- </body>
+</html> -->
+Use code with caution.
+
+What does all this mean?
+
+<!-- • <!DOCTYPE html>: Tells the browser that this is a modern HTML5 document.
+• <html lang="en">: The root element that wraps all your code and sets the primary language.
+• <head>: Holds behind-the-scenes information (metadata) that doesn't appear on the page itself, like your tab's title.
+• <body>: The main container for all visible content like text, images, and buttons. -->
+
+🔧 3. Crucial Building Blocks
+
+<!-- Inside the <body> tags, you can start adding actual content. Here are the most essential elements you will use every day: -->
+
+Headings
+
+<!-- Headings organize your page hierarchically. They range from <h1> (most important/largest) down to <h6> (least important).
+html
+<h1>Main Title of the Page</h1>
+<h2>Section Heading</h2>
+<h3>Sub-section Heading</h3>
+Use code with caution.
+
+Paragraphs & Text Styling
+
+Use <p> for standard blocks of text. You can nest other tags inside a paragraph to emphasize words.
+html
+<p>This is standard text. We can make words <strong>bold</strong> or <em>italicized</em>.</p>
+Use code with caution. -->
+
+Lists
+
+When you need to list items, you can use Unordered Lists (bullet points) or Ordered Lists (numbered lists). Each item inside the list must be wrapped in an <li> (list item) tag.
+html
+<!-- Bulleted List -->
+<!-- <ul>
+    <li>First item</li>
+    <li>Second item</li>
+</ul> -->
+
+<!-- Numbered List -->
+<!-- -->
+
 --------------------------
 
 Tool used: Gemini
@@ -18,6 +85,187 @@ Tool used: Gemini
 Intent: At the start of coding the layout for the app the size was made for an iphone se which is 10 years old. 
 Having the ai take the current code and making the size more moderinized in order to create a nicer look.
 
-Prompt: Update the code here to change from an iphone se to a more moder phone size
+Prompt: Update the code here to change from an iphone se to a more modern phone size
 
 Human input: Changing the code the ai would print out and updating it to add our own style.
+
+Response: code part:  
+  <!-- UPGRADED PORTABLE VIEWPORT: Expanded container layout sizing properties from a legacy 375x667 screen frame up to a modern 412x850 resolution profile layout
+    <div style="width: 412px; height: 850px; background-color: #2c1d11; border: 4px solid #3d2a19; border-radius: 36px; box-shadow: 0px 15px 40px rgba(0,0,0,0.8); padding: 24px; box-sizing: border-box; position: relative; display: flex; flex-direction: column; overflow: hidden;">
+        
+        Main Scrolling Content Panel Area (Added internal scroll layer bounds to let content drift endlessly over viewport parameters) 
+        <div style="flex: 1; padding-bottom: 80px; overflow-y: auto;">
+            <h1 style="color: #ffcc00; font-size: 2em; margin-top: 20px; text-align: center; letter-spacing: 1px;">Welcome to Gunter's Blacksmith Shop</h1>
+            
+            <p style="color: #f4ecd8; font-size: 1.15em; line-height: 1.6; text-align: left; margin-top: 30px;">
+                We specialize in crafting high-quality weapons and armor for adventurers of all kinds. Explore our collection and find the perfect gear for your next quest!
+            </p>
+        </div>  -->
+Explanation part: 
+📏 1. Outer ContainerSizing (The Hardware Frame)
+
+To mirror modern mobile device hardware, the hardcoded base container properties must scale up to accommodate taller, wider pixel distributions.
+• Width Expansion: Increase the master wrapper width constraint from 375px to 412px (aligns with modern screen standards).
+• Height Elongation: Increase the explicit layout height structural threshold from 667px to 850px (captures the elongated aspect ratio).
+• Corner Smoothing: Soften the hardware representation corner radius parameter from a sharp 20px to a curved 36px configuration to mimic bezel-less device margins.
+
+🔀 2. Content Spacing & Typography Calibration
+
+Expanding the screen boundary parameters requires updating the internal typographic variables to ensure optimal readability.
+• Header Scale: Increase the store title layout font dimensions from 1.8em up to 2.0em to optimize the header balance.
+• Paragraph Density: Tweak descriptions and core product text from 1.1em font-size to a clear 1.15em or 1.2em scale.
+• Line Height & Margins: Increase vertical margins from a tight 25px ceiling up to an expansive 30px baseline spacer layer, and push line-height to 1.6 to prevent text density fatigue across longer panels.
+
+
+----------------------------
+
+Tool used Gemini
+
+Intent: Wanting a more clean look. Wanting to organize the inputs of adding the items like the swords, armor and the cooking pot to a more cleaned up queue tab. More to line up the orders with the queue instead of just not adding at all.
+
+Prompt: How to reorganize so the orders inputed are organized cleanly
+
+Human input: Changing the code so it is easily added and added seamlessly to create an organized output. Changed the code so it is quickly added with all of the original code already exisiting.
+
+
+Response: 
+1. Context of the Issue
+
+During cross-tab synchronization testing, incoming order items (Swords, Plate/Chain Armor, and Cooking Pots) failed to populate inside the designated Order Queue panel template. Additionally, newly dynamically generated orders stacked unevenly outside of the structural border bounds established for the user frame.
+
+2. Explanation of the Structural Change
+
+• Decoupling the Empty State Block: Initially, the "Empty Queue" graphic was hardcoded as the root layout node for the queue page section. When cards were injected, they were forced outside of the boundaries. The structure was modified to isolate the empty notice as a fluid child element inside a dedicated list manager <div> (id="anvilList"). When the array count updates past zero, the script targets that specific child container to switch its display status seamlessly to none.
+• Replacing Element Appending Methods (prepend instead of beforeend / innerHTML): Rather than resetting the whole structural section with innerHTML += (which forcefully wipes and freezes current active CSS progress transition frames on older rows), an optimized standalone DOM injection algorithm was used via prepend(). This places newly minted tasks instantly at the top of the stack while protecting existing processing tracks from resetting.
+• Capitalization and Event Router Alignment: Handlers for placePotOrder() and placeArmorOrder() were refactored to read standardized, case-safe component extraction paths before triggering the task-creation payload.
+<!-- <div id="queueSection" style="margin: 20px auto; padding: 16px; background-color: #3d2a19; border-radius: 12px; max-width: 95%;">
+    <h2 style="color: #ffcc00; font-size: 1.5em; margin: 0 0 10px 0;">Forge Registry</h2>
+    <p style="color: #a1887f; font-size: 1.05em; margin: 0 0 15px 0;">Monitor live forge progress tracking streams sequentially below.</p>
+    
+     Unified container list that encapsulates the empty notice securely 
+    <div id="anvilList" style="margin-top: 15px; position: relative; width: 100%;">
+        
+         Safe-zone internal placeholder container box 
+        <div id="emptyNoticeBlock" style="background-color: #1e130a; border: 2px dashed #ffcc00; height: 260px; display: flex; justify-content: center; align-items: center; flex-direction: column; color: #a1887f; border-radius: 16px; padding: 16px; box-sizing: border-box;">
+            <div style="font-size: 3em; margin-bottom: 8px;">🛠️</div>
+            <p style="color: #a1887f; font-size: 1em; margin: 0; text-align: center;">Anvil log is completely quiet.</p>
+            <p style="color: #6d5345; font-size: 0.85em; margin: 4px 0 0 0; text-align: center;">Submit a shop invoice up above to wake Gunter.</p> -->
+        
+
+------------------------------
+
+Tool used Gemini
+
+Intent: Wanting to make the shop more interactive by adding an interactive user wallet. Using ai to create a hypothetical code for a wallet that can be added to the shop. The wallet will allow users to add funds, view their balance, and make purchases. Wanting to simplify this to make it.
+
+Prompt: How to add a wallet to a shopping app based program in html and javascript
+
+Human change: take the code and turn it into medievil theme and expand upon the code to try to make it more interactive
+
+Response:
+To build an interactive digital or e-wallet using HTML and JavaScript, you need a structure containing a balance display, a transaction form (for income and expenses), and a JavaScript script to handle the math and update the DOM (Document Object Model) in real time.
+
+1. Project File Structure
+
+Create a project folder with these three core files:
+• index.html (The user interface layout)
+• style.css (Visual styling for cards, balance, and transaction lists)
+• script.js (The logic that calculates balances and updates the UI)
+
+2. The HTML Code (index.html)
+
+html
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive E-Wallet</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wallet-container">
+    <h2>My Digital Wallet</h2>
+    <div class="balance-card">
+      <h3>Total Balance</h3>
+      <p id="balance">$0.00</p>
+    </div>
+
+    <form id="transaction-form">
+      <input type="text" id="desc" placeholder="Description (e.g., Salary, Coffee)" required>
+      <input type="number" id="amount" placeholder="Amount (positive for income, negative for expense)" required>
+      <select id="type">
+        <option value="income">Income (+)</option>
+        <option value="expense">Expense (-)</option>
+      </select>
+      <button type="submit">Add Transaction</button>
+    </form>
+
+    <div class="transactions-section">
+      <h3>Recent Transactions</h3>
+      <ul id="transaction-list"></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+Use code with caution.
+
+3. The JavaScript Code (script.js)
+
+This script listens for form submissions, stores transactions in an array, updates the total balance, and dynamically renders the transaction history on the page.
+javascript
+const balanceEl = document.getElementById('balance');
+const formEl = document.getElementById('transaction-form');
+const descEl = document.getElementById('desc');
+const amountEl = document.getElementById('amount');
+const typeEl = document.getElementById('type');
+const listEl = document.getElementById('transaction-list');
+
+// Array to store transactions
+let transactions = [];
+
+// Handle form submit
+formEl.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const description = descEl.value.trim();
+  let rawAmount = parseFloat(amountEl.value);
+  const transactionType = typeEl.value;
+
+  if (!description || isNaN(rawAmount)) return;
+
+  // Make amount negative if it's an expense
+  const finalAmount = transactionType === 'expense' ? -Math.abs(rawAmount) : Math.abs(rawAmount);
+
+  const transaction = {
+    id: Date.now(),
+    description,
+    amount: finalAmount,
+    type: transactionType
+  };
+
+  transactions.push(transaction);
+  updateWallet();
+  formEl.reset();
+});
+
+// Update balance and render list
+function updateWallet() {
+  // Calculate total balance
+  const total = transactions.reduce((acc, item) => acc + item.amount, 0);
+  balanceEl.textContent = `$${total.toFixed(2)}`;
+
+  // Clear and rebuild transaction list
+  listEl.innerHTML = '';
+  transactions.forEach((item) => {
+    const li = document.createElement('li');
+    li.classList.add(item.type);
+    li.innerHTML = `
+      <span>${item.description}</span>
+      <span>${item.amount >= 0 ? '+' : ''}$${item.amount.toFixed(2)}</span>
+    `;
+    listEl.appendChild(li);
+  });
+} -->

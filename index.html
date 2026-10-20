@@ -11,20 +11,28 @@
 
     <!-- Need the phone to sit in the middle-->
     <div style="width: 412px; height: 850px; background-color: #2c1d11; border: 4px solid #3d2a19; border-radius: 36px; box-shadow: 0px 15px 40px rgba(0,0,0,0.8); padding: 24px; box-sizing: border-box; position: relative; display: flex; flex-direction: column; overflow: hidden;">
-        
+       
+
         <!-- main stuff -->
         <div style="flex: 1; padding-bottom: 80px; overflow-y: auto;">
             <h1 style="color: #ffcc00; font-size: 2em; margin-top: 20px; text-align: center; letter-spacing: 1px;">Welcome to Gunter's Blacksmith Shop</h1>
-           <!-- Swords -->
+           <!-- Gold purse-->
+            <div style="background-color: #3d2a19; border-radius: 12px; padding: 12px; margin-top: 20px; display: inline-flex; align-items: center; gap: 10px; margin: 15px auto; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);">
+                <div style="font-size: 1.3em; color: #ffcc00;">💰</div>
+                <span style="color: #ffcc00; font-size: 1.2em;">Your purse: <span id="goldAmount">1000</span></span>
+                <strong style="color: #ffcc00; font-size: 1.2em; letter-spacing: 1px"><span id="goldAmount"></span> Gold</strong>
+            </div>
+
+            <!-- Swords -->
             <div id = "swords" style="margin-top: 20px; padding: 16px; background-color: #3d2a19; border-radius: 12px;">
                 <h2 style="color: #ffcc00; font-size: 1.5em; margin-bottom: 10px;">Swords</h2>
                 <p style="color: #a1887f; font-size: 1em;">Welcome to Gunter's forge! Design your own custom swords with crossgards hilt, and choose runic engravings to make them truly unique.</p>
                 
-
-                <!-- keep a placeholder for future sword canvas-->
+                 <!-- Commented out because unsure on how to implement and timeline is short-->
+                <!-- keep a placeholder for future sword canvas
                 <div style ="background-color: #1e130a; border: 2px dashed #ffcc00; height: 260px; margin-top: 20px; display: flex; justify-content: center; align-items: center; color: #a1887f; border-radius: 16px;">
                     [Sword Canvas Placeholder]
-                </div>
+                </div> -->
 
                     <!-- Sword Options -->
                     <div style="margin-top: 20px; background-color: #1e130a; border: 2px solid #ffcc00; border-radius: 16px; padding: 16px; box-sizing: border-box;">
@@ -55,7 +63,7 @@
                     </label>
                     <!-- Runic Engravings -->
                     <label style="color: #a1887f; display: block;">Runic Engravings:
-                        <input type="text" placeholder="Enter runes... (+ 10 Gold if added)" style="margin-left: 8px; padding: 4px; border-radius: 4px; border: none; background-color: #3d2a19; color: #ffcc00;">
+                        <input type="text" id="runicEngravings" placeholder="Enter runes... (+10 Gold)" style="margin-left: 8px; padding: 4px; border-radius: 4px; border: none; background-color: #3d2a19; color: #ffcc00;">
                     </label>
                     <!-- checkout-->
                     <button onClick="placeSwordOrder()" style="width: 100%; background-color: #ffcc00; color: #1a120b; border: none; border-radius: 8px; padding: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer;">
@@ -67,10 +75,10 @@
                      <div id = "armor" style="margin-top: 20px; padding: 16px; background-color: #3d2a19; border-radius: 12px;">
                         <h2 style="color: #ffcc00; font-size: 1.5em; margin-bottom: 10px;">Armor</h2>
                         <p style="color: #a1887f; font-size: 1em;">Choose from a variety of armor types, including chainmail and platemail, to protect yourself in battle.</p>
-                     
-                        <div style="background-color: #1e130a; border: 2px dashed #ffcc00; height: 260px; margin-top: 20px; display: flex; justify-content: center; align-items: center; color: #a1887f; border-radius: 16px;">
+                         <!-- Commented out because unsure on how to implement and timeline is short-->
+                        <!-- <div style="background-color: #1e130a; border: 2px dashed #ffcc00; height: 260px; margin-top: 20px; display: flex; justify-content: center; align-items: center; color: #a1887f; border-radius: 16px;">
                         [Armor stand placeholder]
-                     </div>
+                     </div> -->
                     <div style ="margin-top: 20px; background-color: #1e130a; border: 2px solid #ffcc00; border-radius: 16px; padding: 16px; box-sizing: border-box;">
                     <h3 style="color: #ffcc00; font-size: 1.2em; margin-bottom: 10px;">Armor Options</h3>
                     <label style="color: #a1887f; display: block; margin-bottom: 8px;" >Armor Type:
@@ -79,15 +87,19 @@
                             <option value="platemail">Platemail (+200 Gold)</option>
                         </select>
                     </label>
+                    <button onClick="placeArmorOrder()" style="width: 100%; background-color: #ffcc00; color: #1a120b; border: none; border-radius: 8px; padding: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer;">
+                        Place Armor Order
+                    </button>
                     
                 </div>
                 <!-- cookbook and gunter's recipes -->
                 <div id = "cookbook" style="margin-top: 20px; padding: 16px; background-color: #3d2a19; border-radius: 12px;">
                     <h2 style="color: #ffcc00; font-size: 1.5em; margin-bottom: 10px;">Cookbook</h2>
                     <p style="color: #a1887f; font-size: 1em;">Discover Gunter's secret recipes and learn how to cook like a master blacksmith.</p>
-                    <div style="background-color: #1e130a; border: 2px dashed #ffcc00; height: 260px; margin-top: 20px; display: flex; justify-content: center; align-items: center; color: #a1887f; border-radius: 16px;">
+                   <!-- Commented out because unsure on how to implement and timeline is short-->
+                    <!-- <div style="background-color: #1e130a; border: 2px dashed #ffcc00; height: 260px; margin-top: 20px; display: flex; justify-content: center; align-items: center; color: #a1887f; border-radius: 16px;">
                         [Cookbook placeholder]
-                    </div>
+                    </div> -->
                     <!-- cooking pot -->
                 <div style="margin-top: 20px; padding: 16px; background-color: #3d2a19; border-radius: 12px;">
                     <div style ="font-size: 3em; margin-bottom: 10px; color: #ffcc00; text-align: center;">🍲</div>
@@ -112,13 +124,19 @@
                 </div>
                 
                     
-                <!-- que tab -->
-                 <div style="margin-top: 20px; padding: 16px; background-color: #3d2a19; border-radius: 12px;">
-                    <h2 style="color: #ffcc00; font-size: 1.5em; margin-bottom: 10px;">Order Queue</h2>
-                    <p style="color: #a1887f; font-size: 1em;">View the current order queue and track the progress of your custom creations.</p>
-                    <div style="background-color: #1e130a; border: 2px dashed #ffcc00; height: 260px; margin-top: 20px; display: flex; justify-content: center; align-items: center; color: #a1887f; border-radius: 16px;">
-                        [Order Queue placeholder]
+                <!-- queue tab -->
+                 <div id="orderQueue" style="margin: 20px auto 0 auto; padding: 16px; background-color: #3d2a19; border-radius: 12px; max-width: 95%;">
+                <h2 style="color: #ffcc00; font-size: 1.5em; margin-bottom: 10px;">Order Queue</h2>
+                <p style="color: #a1887f; font-size: 1em; margin-bottom: 15px;">View the current order queue and see what other customers have ordered.</p>
+                    
+                  <div id="activeOrders" style="margin-top: 15px;"></div>
+
+                    <div id="emptyQueueNotice" style="background-color: #1e130a; border: 2px dashed #ffcc00; height: 260px; display: flex; justify-content: center; align-items: center; flex-direction: column; color: #a1887f; border-radius: 16px; box-sizing: border-box; padding: 20px;">
+                        <div style="font-size: 3em; margin-bottom: 10px;">🛠️</div>
+                        <p style="color: #a1887f; font-size: 1em; margin: 0; text-align: center;">Order queue is currently empty.</p>
+                        <p style="color: #6d5345; font-size: 0.85em; margin-top: 4px; text-align: center;">Place an order to light the forge.</p>
                     </div>
+                </div>
                 </div>
                 <!-- Navbar or some navigation on the scrolling-->
                  <div style = "position: absolute; bottom: 0; left: 0; width: 100%; height: 75px; background-color: #1e130a; border-bottom-left-radius: 32px; border-bottom-right-radius: 32px; border-top: 2px solid #3d2a19; display: flex; justify-content: space-around; align-items: center; box-sizing: border-box; padding-bottom: 10px;">
@@ -130,6 +148,8 @@
 
                 
             </div>
+
+            
 
     
 
@@ -150,29 +170,90 @@ function scrollToSection(sectionId) {
         section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
-//sword order function
-function placeSwordOrder(){
-    const blade = document.getElementById('bladeType').value;
-    const crossguard = document.getElementById('crossguardStyle').value;
-    const hilt = document.getElementById('hiltMaterial').value;
-    const runes = document.getElementById('runicEngravings').value || 'None';
-
-    alert("Order sent to Gunter!\n Forging a " + blade + " with a " + crossguard + " crossguard, " + hilt + " hilt, and runic engravings: " + runes);
+//global gold currency 
+let userGold = 1000;
+function deductGoldPurse(goldCost){
+    if(userGold >= goldCost){
+        userGold -= goldCost; //subtract cost from user gold
+        document.getElementById('goldAmount').textContent = userGold;
+        return true; //purchase successful
+    } else {
+        alert("You don't have enough gold to make this purchase!");
+        return false; //purchase failed
+    }
 }
+//sword order function
+     function placeSwordOrder(){
+            const blade = document.getElementById('bladeType').value;
+            const crossguard = document.getElementById('crossguardStyle').value;
+            const hilt = document.getElementById('hiltMaterial').value;
+
+            const runesInput = document.getElementById('runicEngravings').value.trim() || 'None';
+            const runes = (runesInput !== "") ? runesInput : 'None';
+
+            
+            //dynamic sword cost calculation based on the selected options
+            let swordCost = 0;
+            if(blade === "longsword") swordCost += 150;
+            else if(blade === "katana") swordCost += 200;
+            else if(blade === "rapier") swordCost += 120;
+
+            if(crossguard === "simple") swordCost += 20;
+            else if(crossguard === "ornate") swordCost += 50;
+            else if(crossguard === "spiked") swordCost += 40;
+
+            if(hilt === "leather") swordCost += 10;
+            else if(hilt === "wood") swordCost += 15;
+            else if(hilt === "metal") swordCost += 25;
+
+            if(runes !== "None") swordCost += 10;
+
+            if(!deductGoldPurse(swordCost)){
+                alert("Order failed due to insufficient funds.");
+                return; // Exit the function if the user doesn't have enough gold
+            }
+
+            const cleanBlade = blade.charAt(0).toUpperCase() + blade.slice(1);
+            const cleanGuard = crossguard.charAt(0).toUpperCase() + crossguard.slice(1);
+            const cleanHilt = hilt.charAt(0).toUpperCase() + hilt.slice(1);
+
+            alert("Order Sent to Gunter's Forge!\n\nReceipt Details:\n• Weapon: " + cleanBlade + " Blade\n• Crossguard: " + cleanGuard + "\n• Grip: " + cleanHilt + " Hilt\n• Engravings: " + runes + "\n• Total Cost: " + swordCost + " Gold\n\nStamping item into his active itinerary queue...");
+            
+            addOrderToQueue("You", cleanBlade + " Sword");
+        }
 //armor order function
 function placeArmorOrder(){
     const armorType = document.getElementById('armorType').value;
-    alert("Order sent to Gunter!\n Forging a " + armorType + " armor.");
+    const cleanArmor = armorType.charAt(0).toUpperCase() + armorType.slice(1);
+    let armorCost = (armorType === "chainmail") ? 100 : 200;
+    if(!deductGoldPurse(armorCost)){
+        alert("Order failed due to insufficient funds.");
+        return; // Exit the function if the user doesn't have enough gold
+    }
+
+
+    alert("Order Sent to Gunter's Forge!\n\nReceipt Details:\n• Armor Type: " + armorType + "\n• Total Cost: " + armorCost + " Gold\n\nStamping item into his active itinerary queue...");
+
+    addOrderToQueue("You", cleanArmor + " Armor");
 }
 //cooking pot order function
 function placePotOrder(){
+    let potCost = 25;
+    if(!deductGoldPurse(potCost)){
+        alert("Order failed due to insufficient funds.");
+        return; // Exit the function if the user doesn't have enough gold
+    }
+
     alert("Order sent to Gunter!\n Preparing a cooking pot for you.");
+    
+
+    addOrderToQueue("You", "Cooking Pot");
 }
 //recipe stuff
 let customRecipes = [
-    "Place holder",
-    "Place holder 2",
-    "Place holder 3"
+    "Cornealious Shyverious: Royal Steak with beef stew",
+    "Sir Pallav the Magical: Magical Wizard Food",
+    "Lady Ruby: Elightenment Mint Milkshake"
 ]
 function CookBookFeed(){
     const displayFeed = document.getElementById('liveRecipes');
@@ -201,8 +282,118 @@ function addRecipe(){
     }
 }
 
+
+
+//Forge que
+let totalOrders = 0;
+function addOrderToQueue(customerName, itemName){
+    const queueList = document.getElementById('orderQueue');
+    const emptyNotice = document.getElementById('emptyQueueNotice');
+    if(!queueList) return; // Check if the element exists
+    if(emptyNotice){
+        emptyNotice.style.display = 'none'; // Hide the empty notice if it exists
+    }
+    totalOrders++;
+    const currentOrderId = totalOrders;
+    //we need a card templete so lets make one
+    const HTMLcard = `
+     <div id="orderCard-${currentOrderId}" style="margin-bottom: 12px; padding: 12px; background-color: #2c1d11; border-radius: 8px; color: #ffcc00; text-align: left; border: 1px solid #3d2a19;">
+        <strong>Order #${currentOrderId}</strong><br>
+        <span style="color: #f4ecd8; font-size: 0.95em;">Customer: ${customerName}</span><br>
+        <span style="color: #f4ecd8; font-size: 0.95em;">Item: ${itemName}</span>
+        
+        <!-- Live Bar -->
+        <div style="margin-top: 10px; background-color: #3d2a19; border-radius: 6px; height: 16px; width: 100%; position: relative; overflow: hidden; border: 1px solid #1a120b;">
+            <div id="progressBar-${currentOrderId}" style="background-color: #ffcc00; height: 100%; width: 0%; border-radius: 4px; transition: width 0.1s linear;"></div>
+            
+            <!-- Progress Text -->
+            <div id="progressText-${currentOrderId}" style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); color: #1a120b; font-size: 0.85em; font-weight: bold; line-height: 16px;">0%</div>
+            <div id="forgeStatus-${currentOrderId}" style="position: absolute; top: 0; right: 8px; color: #1a120b; font-size: 0.85em; font-weight: bold; line-height: 16px;">Heating...</div>
+        </div>
+        </div>
+    `;
+
+
+    queueList.insertAdjacentHTML('beforeend', HTMLcard);
+
+    let currentProgress = 0;
+    const forgeInterval = setInterval(() => {
+        if(currentProgress < 100){
+            currentProgress++;
+            const progressBar = document.getElementById(`progressBar-${currentOrderId}`);
+            const progressText = document.getElementById(`progressText-${currentOrderId}`);
+            const forgeStatus = document.getElementById(`forgeStatus-${currentOrderId}`);
+            if(progressBar && progressText && forgeStatus){
+                progressBar.style.width = `${currentProgress}%`;
+                progressText.textContent = `${currentProgress}%`;
+                if(currentProgress < 50){
+                    forgeStatus.textContent = "Heating...";
+                } else if(currentProgress < 100){
+                    forgeStatus.textContent = "Forging...";
+                } else {
+                    forgeStatus.textContent = "Cooling...";
+                }
+            }
+        } else {
+            clearInterval(forgeInterval);
+            const forgeStatus = document.getElementById(`forgeStatus-${currentOrderId}`);
+            if(forgeStatus){
+                forgeStatus.textContent = "Completed!";
+            }
+        }
+    }, 100); // Update every 100ms
+
+}
+
+//function for adding random people for busy shop
+function randomCustomers(){
+    const randomCustomers = [
+        "Cornealious Shyverious",
+        "Joeseph Mann the II",
+        "Sir Mason the III",
+        "Lady Ruby",
+        "Sir Pallav the Magical",
+        "Needle knight Gwen"
+    ];
+
+    const blackSmithItems = [
+        "Katana blade with spiked crossgaurd and a wood hilt",
+        "Plate armor",
+        "Chain mail armor",
+        "Rapier blade with simple crossgaurd and a metal hilt",
+        "Cooking pot",
+        "Longsword with ornate crossgaurd and a leather hilt"
+    ];
+    const randomName = randomCustomers[Math.floor(Math.random() * randomCustomers.length)];
+    const randomBlackSmith = blackSmithItems[Math.floor(Math.random() * blackSmithItems.length)];
+
+    addOrderToQueue(randomName, randomBlackSmith);
+
+}
+//kickstart for busy shop
+function startShop(){
+    const randomTimeDelay = Math.floor(Math.random() * (35000 - 15000 + 1)) + 15000;
+
+    setTimeout(() => {
+        randomCustomers();
+        startShop();
+    }, randomTimeDelay);
+
+
+}
+
 window.onload = function() {
     CookBookFeed(); // Initialize the feed on page load and hopefully it works
+    startShop(); //start the showing up of people
+
+
+    addOrderToQueue("Needle knight Gwen", "Cooking pot");
 };
+
+
+
+ 
+
+
 
 </script>
