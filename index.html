@@ -30,32 +30,32 @@
                     <div style="margin-top: 20px; background-color: #1e130a; border: 2px solid #ffcc00; border-radius: 16px; padding: 16px; box-sizing: border-box;">
                     <h3 style="color: #ffcc00; font-size: 1.2em; margin-bottom: 10px;">Sword Options</h3>
                     <label style="color: #a1887f; display: block; margin-bottom: 8px;" >Blade Type:
-                        <select style="margin-left: 8px; padding: 4px; border-radius: 4px; border: none; background-color: #3d2a19; color: #ffcc00;">
-                            <option value="longsword">Longsword</option>
-                            <option value="katana">Katana</option>
-                            <option value="rapier">Rapier</option>
+                        <select id="bladeType" style="margin-left: 8px; padding: 4px; border-radius: 4px; border: none; background-color: #3d2a19; color: #ffcc00;">
+                            <option value="longsword">Longsword (+150 Gold)</option>
+                            <option value="katana">Katana (+200 Gold)</option>
+                            <option value="rapier">Rapier (+120 Gold)</option>
                         </select>
                 
                     </label>
                     <!-- Crossguard Style -->
                     <label style="color: #a1887f; display: block; margin-bottom: 8px;">Crossguard Style:
-                        <select style="margin-left: 8px; padding: 4px; border-radius: 4px; border: none; background-color: #3d2a19; color: #ffcc00;">
-                            <option value="simple">Simple</option>
-                            <option value="ornate">Ornate</option>
-                            <option value="spiked">Spiked</option>
+                        <select id="crossguardStyle" style="margin-left: 8px; padding: 4px; border-radius: 4px; border: none; background-color: #3d2a19; color: #ffcc00;">
+                            <option value="simple">Simple (+20 Gold)</option>
+                            <option value="ornate">Ornate (+50 Gold)</option>
+                            <option value="spiked">Spiked (+40 Gold)</option>
                         </select>
                     </label>
                     <!-- Hilt Material -->
                     <label style="color: #a1887f; display: block; margin-bottom: 8px;">Hilt Material:
-                        <select style="margin-left: 8px; padding: 4px; border-radius: 4px; border: none; background-color: #3d2a19; color: #ffcc00;">
-                            <option value="leather">Leather</option>
-                            <option value="wood">Wood</option>
-                            <option value="metal">Metal</option>
+                        <select id="hiltMaterial" style="margin-left: 8px; padding: 4px; border-radius: 4px; border: none; background-color: #3d2a19; color: #ffcc00;">
+                            <option value="leather">Leather (+10 Gold)</option>
+                            <option value="wood">Wood (+15 Gold)</option>
+                            <option value="metal">Metal (+25 Gold)</option>
                         </select>
                     </label>
                     <!-- Runic Engravings -->
                     <label style="color: #a1887f; display: block;">Runic Engravings:
-                        <input type="text" placeholder="Enter runes..." style="margin-left: 8px; padding: 4px; border-radius: 4px; border: none; background-color: #3d2a19; color: #ffcc00;">
+                        <input type="text" placeholder="Enter runes... (+ 10 Gold if added)" style="margin-left: 8px; padding: 4px; border-radius: 4px; border: none; background-color: #3d2a19; color: #ffcc00;">
                     </label>
                     <!-- checkout-->
                     <button onClick="placeSwordOrder()" style="width: 100%; background-color: #ffcc00; color: #1a120b; border: none; border-radius: 8px; padding: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer;">
@@ -74,10 +74,11 @@
                     <div style ="margin-top: 20px; background-color: #1e130a; border: 2px solid #ffcc00; border-radius: 16px; padding: 16px; box-sizing: border-box;">
                     <h3 style="color: #ffcc00; font-size: 1.2em; margin-bottom: 10px;">Armor Options</h3>
                     <label style="color: #a1887f; display: block; margin-bottom: 8px;" >Armor Type:
-                        <select style="margin-left: 8px; padding: 4px; border-radius: 4px; border: none; background-color: #3d2a19; color: #ffcc00;">
-                            <option value="chainmail">Chainmail</option>
-                            <option value="platemail">Platemail</option>
+                        <select id="armorType" style="margin-left: 8px; padding: 4px; border-radius: 4px; border: none; background-color: #3d2a19; color: #ffcc00;">
+                            <option value="chainmail">Chainmail (+100 Gold)</option>
+                            <option value="platemail">Platemail (+200 Gold)</option>
                         </select>
+                    </label>
                     
                 </div>
                 <!-- cookbook and gunter's recipes -->
@@ -87,7 +88,30 @@
                     <div style="background-color: #1e130a; border: 2px dashed #ffcc00; height: 260px; margin-top: 20px; display: flex; justify-content: center; align-items: center; color: #a1887f; border-radius: 16px;">
                         [Cookbook placeholder]
                     </div>
+                    <!-- cooking pot -->
+                <div style="margin-top: 20px; padding: 16px; background-color: #3d2a19; border-radius: 12px;">
+                    <div style ="font-size: 3em; margin-bottom: 10px; color: #ffcc00; text-align: center;">🍲</div>
+                    <h2 style="color: #ffcc00; font-size: 1.5em; margin-bottom: 10px;">Gunter's Cooking Pot</h2>
+                    <p style="color: #a1887f; font-size: 1em;">Use the cooking pot to prepare meals with an elegant taste for a low price of 25 gold.</p>
+                    <button onClick ="placePotOrder()" style="width: 100%; background-color: #ffcc00; color: #1a120b; border: none; border-radius: 8px; padding: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer;">
+                        Buy cooking pot for 25 Gold
+                    </button>
+
                 </div>
+                <! -- live recipes for the BOOK -- >
+                <div id="liveRecipes" style ="max-height: 200px; overflow-y: auto; background-color: #1e130a; border: 2px solid #ffcc00; border-radius: 16px; padding: 16px; box-sizing: border-box; margin-top: 20px;">
+                            <!-- can leave empty as its going to be added dynamically with javascript (if it works properly) -->
+                </div>
+                    <!-- Recipe Input for the name and the details of the recipe -->
+                <div style ="background-color: #2c1d11;border: 1px solid #3d2a19; border-radius: 16px; padding: 16px; box-sizing: border-box; margin-top: 20px;">
+                    <h3 style="color: #ffcc00; font-size: 1.2em; margin-bottom: 10px;">Add a Recipe</h3>
+                    <input type="text" id="recipeInput" placeholder="Enter your name and the recipe details..." style="width: calc(100% - 16px); padding: 8px; border-radius: 4px; border: none; background-color: #3d2a19; color: #ffcc00;">
+                    <button onClick="addRecipe()" style="width: 100%; background-color: #ffcc00; color: #1a120b; border: none; border-radius: 8px; padding: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer; margin-top: 10px;">
+                        Add Recipe
+                    </button>
+                </div>
+                
+                    
                 <!-- que tab -->
                  <div style="margin-top: 20px; padding: 16px; background-color: #3d2a19; border-radius: 12px;">
                     <h2 style="color: #ffcc00; font-size: 1.5em; margin-bottom: 10px;">Order Queue</h2>
@@ -95,6 +119,7 @@
                     <div style="background-color: #1e130a; border: 2px dashed #ffcc00; height: 260px; margin-top: 20px; display: flex; justify-content: center; align-items: center; color: #a1887f; border-radius: 16px;">
                         [Order Queue placeholder]
                     </div>
+                </div>
                 <!-- Navbar or some navigation on the scrolling-->
                  <div style = "position: absolute; bottom: 0; left: 0; width: 100%; height: 75px; background-color: #1e130a; border-bottom-left-radius: 32px; border-bottom-right-radius: 32px; border-top: 2px solid #3d2a19; display: flex; justify-content: space-around; align-items: center; box-sizing: border-box; padding-bottom: 10px;">
                     <button onClick="scrollToSection('swords')" style="background-color: #3d2a19; color: #ffcc00; border: none; border-radius: 8px; padding: 8px 16px; font-size: 1em; cursor: pointer;">Swords</button>
@@ -112,3 +137,72 @@
 
 </body>
 </html>
+
+
+<! -- javascript functionality -- >
+<script>
+
+
+//smooth auto scrolling
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+//sword order function
+function placeSwordOrder(){
+    const blade = document.getElementById('bladeType').value;
+    const crossguard = document.getElementById('crossguardStyle').value;
+    const hilt = document.getElementById('hiltMaterial').value;
+    const runes = document.getElementById('runicEngravings').value || 'None';
+
+    alert("Order sent to Gunter!\n Forging a " + blade + " with a " + crossguard + " crossguard, " + hilt + " hilt, and runic engravings: " + runes);
+}
+//armor order function
+function placeArmorOrder(){
+    const armorType = document.getElementById('armorType').value;
+    alert("Order sent to Gunter!\n Forging a " + armorType + " armor.");
+}
+//cooking pot order function
+function placePotOrder(){
+    alert("Order sent to Gunter!\n Preparing a cooking pot for you.");
+}
+//recipe stuff
+let customRecipes = [
+    "Place holder",
+    "Place holder 2",
+    "Place holder 3"
+]
+function CookBookFeed(){
+    const displayFeed = document.getElementById('liveRecipes');
+    if(!displayFeed) return; // Check if the element exists
+    displayFeed.innerHTML = ""; //clear the feed before adding new recipes
+    
+
+    customRecipes.slice().reverse().forEach(recipe => {
+        displayFeed.innerHTML += `
+        <div style="margin-bottom: 10px; padding: 8px; background-color: #2c1d11; border-radius: 8px; color: #ffcc00;">
+                ${recipe}
+            </div>`;
+        
+    });
+
+}
+function addRecipe(){
+    const recipeInput = document.getElementById('recipeInput');
+    if(!recipeInput) return; // Check if the input element exists
+    if(recipeInput.value.trim() !== ""){
+        customRecipes.push(recipeInput.value.trim());
+        recipeInput.value = ""; // Clear the input field
+        CookBookFeed(); // Update the feed
+    } else {
+        alert("Please enter a valid recipe.");
+    }
+}
+
+window.onload = function() {
+    CookBookFeed(); // Initialize the feed on page load and hopefully it works
+};
+
+</script>
