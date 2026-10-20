@@ -1,0 +1,23 @@
+Ai Doccumentation 
+
+Tool used: Google Gemini 
+
+Intent: In order to to succeed in this challenge we needed to learn Html code. The way that it was 
+done was having google gemini create an easy guide and tutorial to learn html to set the foundational knowledge
+and set up a good way to start coding the challenge promopt
+
+Prompt: Create a HTML code learning guide for a complete beginner
+
+Human input: Taking the skills from the output and using that knowledge to create the html file for our friend
+gunter
+
+--------------------------
+
+Tool used: Gemini
+
+Intent: At the start of coding the layout for the app the size was made for an iphone se which is 10 years old. 
+Having the ai take the current code and making the size more moderinized in order to create a nicer look.
+
+Prompt: Update the code here to change from an iphone se to a more moder phone size
+
+Human input: Changing the code the ai would print out and updating it to add our own style.
