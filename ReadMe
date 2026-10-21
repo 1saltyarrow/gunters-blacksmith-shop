@@ -1,0 +1,68 @@
+Functions and Features list
+
+Functions (javascript)
+1. scrollToSection(sectionId): Implemnted to smoothly scroll across the page to the Swords, Armor, Cookbook, or Oder Queue when you tap the navbar button.
+
+2. deductGoldPurse(goldcost): Checks whethger you have enough gold. If you do then it subtracts the cost and updates the purse; if you dont, it will display a warning and stops the purchase.
+
+3. placeSwordorder(): reads the blade, crossgaurd, hilt, and runes you picked, adds up the price, takes the gold, shows a recipt, and adds the sword to the queue.
+
+4. placeArmorOrder(): prices chainmail at 100 gold or platemail at 200, takes the gold, shows a receipt, and queues the order.
+
+5. placePotOrder(): buys a cooking pot for 25 gold and queues it.
+
+6. CookBookFeed(): shows all the recipes in the cookbook box with the newest on top.
+
+7. addRecipe: adds a new recipe from, the text box, or warns you if the box is empty.
+
+8. addOrderToQueue(customerName, itemName): makes an order card with an animayed progress bar that goes from heating to Forging to completed.
+
+9. randomCustomers(): picks a random medieval customer and a random item, then adds that order to the queue.
+
+10. startShop(): adds a random customer order every 15-35 seconds so the shop feels busy
+
+11. startMiningAdventure(): shows a start message and sets up a list of ores.
+
+12. buildMiningAdventure(): clears and sets up the mining resoruces grid.
+
+13. window.onLoad: Loads the cookbook, start the random customers, and adds a first order when the page opens.
+
+14. digBlock: Allows the blocks that are placed to be mined when clicked.
+
+15. refreshPickaxe: Restores the durability and energy of the pickaxe.
+
+16. updateInventoryDisplay: Show what ores you have mined.
+
+17. addToCart: Allows for stuff to be added to the cart.
+
+18. addSwordToCart: Adds the sword stuff to the cart.
+
+19. addArmorToCart: Adds the armor stuff to the cart.
+
+20. removeFromCart: Allows for stuff to be removed from the cart.
+
+21. renderCart: Renders the cart tab in the program.
+
+22. checkOutCart: Takes all of the stuff in the cart and moves it to the queue and subtracts the gold.
+
+Features list
+
+1. Custom sword builder: Blade, crossgaurd, and hilt dropdowns plus runic engravings with live pricing.
+
+2. Armor Shop: Chainmail or platemail.
+
+3. Gold Purse: start with 1,000 gold, it goes down with eachn order, and it blocks the orders you cant afford.
+
+4. Live Forge order queue: Each order card has an animated porgress bar.
+
+5. Busy-Shop Simulation: random customers place orders on their own.
+
+6. Gunter Cookbook: you can by a cooking pot and add your own recipe to the list. 
+
+7. Mining Adventure: be able to mine random ores and gems like iron, gold, and diamonds.
+
+8. Pickaxe Status: shows energy and durabilty that drop each time you mine.
+
+9. Mining Resrouces and Sell Ores boxes: shows what you have gatheredd. Selling for gold still planned.
+
+10. Phone-Style screen and navbar: The shop is laid out like a phone screen with a bottom navbar fro jumping between sections.

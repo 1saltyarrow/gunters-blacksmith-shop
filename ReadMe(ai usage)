@@ -269,3 +269,15 @@ function updateWallet() {
     listEl.appendChild(li);
   });
 } -->
+
+
+Tool: Grok Ai
+
+Intent: to figure out why the start minging button does not trigger the mining adventure
+
+prompt: why does the mining button not trigger the mining adventure
+
+response: Some of the varibles were wrong and set to different things in the html and the javascript parts
+
+human change: Corrected the variable names in the HTML and JavaScript to match each other, ensuring the mining button triggers the mining adventure correctly.
+

@@ -5,6 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gunter's Blacksmith Shop</title>
+    <style>
+        button {
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        button:active {
+            transform: scale(0.97);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+    </style>
 </head>
 
 <body style="background-color: #1a120b; margin: 0; min-height: 100vh; display: flex; justify-content: center; align-items: center; font-family: sans-serif;">
@@ -66,8 +79,8 @@
                         <input type="text" id="runicEngravings" placeholder="Enter runes... (+10 Gold)" style="margin-left: 8px; padding: 4px; border-radius: 4px; border: none; background-color: #3d2a19; color: #ffcc00;">
                     </label>
                     <!-- checkout-->
-                    <button onClick="placeSwordOrder()" style="width: 100%; background-color: #ffcc00; color: #1a120b; border: none; border-radius: 8px; padding: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer;">
-                        Place Custom Order
+                    <button onClick="addSwordToCart()" style="width: 100%; background-color: #ffcc00; color: #1a120b; border: none; border-radius: 8px; padding: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer;">
+                        Add Sword to Cart
                     </button>
                 </div>
                 </div>
@@ -87,8 +100,8 @@
                             <option value="platemail">Platemail (+200 Gold)</option>
                         </select>
                     </label>
-                    <button onClick="placeArmorOrder()" style="width: 100%; background-color: #ffcc00; color: #1a120b; border: none; border-radius: 8px; padding: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer;">
-                        Place Armor Order
+                    <button onClick="addArmorToCart()" style="width: 100%; background-color: #ffcc00; color: #1a120b; border: none; border-radius: 8px; padding: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer;">
+                        Add Armor to Cart
                     </button>
                     
                 </div>
@@ -105,12 +118,13 @@
                     <div style ="font-size: 3em; margin-bottom: 10px; color: #ffcc00; text-align: center;">🍲</div>
                     <h2 style="color: #ffcc00; font-size: 1.5em; margin-bottom: 10px;">Gunter's Cooking Pot</h2>
                     <p style="color: #a1887f; font-size: 1em;">Use the cooking pot to prepare meals with an elegant taste for a low price of 25 gold.</p>
-                    <button onClick ="placePotOrder()" style="width: 100%; background-color: #ffcc00; color: #1a120b; border: none; border-radius: 8px; padding: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer;">
-                        Buy cooking pot for 25 Gold
+                    <button onClick ="addToCart('Cooking Pot', 25)" style="width: 100%; background-color: #ffcc00; color: #1a120b; border: none; border-radius: 8px; padding: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer;">
+                        Add Cooking Pot to Cart (25 Gold)
                     </button>
 
                 </div>
-                <! -- live recipes for the BOOK -- >
+                <!-- live recipes for the BOOK -->
+                 
                 <div id="liveRecipes" style ="max-height: 200px; overflow-y: auto; background-color: #1e130a; border: 2px solid #ffcc00; border-radius: 16px; padding: 16px; box-sizing: border-box; margin-top: 20px;">
                             <!-- can leave empty as its going to be added dynamically with javascript (if it works properly) -->
                 </div>
@@ -122,8 +136,51 @@
                         Add Recipe
                     </button>
                 </div>
-                
+
+                <!-- mining adventure -->
+                <div id="miningAdventure" style="margin: 20px auto 0 auto; padding: 16px; background-color: #3d2a19; border-radius: 12px; max-width: 95%;">
+                    <h2 style="color: #ffcc00; font-size: 1.5em; margin-bottom: 10px;">Mining Adventure</h2>
+                    <p style="color: #a1887f; font-size: 1em; margin-bottom: 15px;">Embark on a mining adventure and gather valuable resources.</p>
+                    <button onClick="startMiningAdventure()" style="width: 100%; background-color: #ffcc00; color: #1a120b; border: none; border-radius: 8px; padding: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer; margin-top: 10px;">
+                        Start Mining Adventure
+                    </button>
+                </div>
+                <!-- durability for pickaxe -->
+                <div id="pickaxeStatus" style="margin: 20px auto 0 auto; padding: 16px; background-color: #3d2a19; border-radius: 12px; max-width: 95%;">
+                    <h2 style="color: #ffcc00; font-size: 1.5em; margin-bottom: 10px;">Pickaxe Status</h2>
+                    <p style="color: #a1887f; font-size: 1em; margin-bottom: 15px;">Check the durability of your pickaxe.</p>
+                    <p id="pickaxeDurability" style="color: #a1887f; font-size: 1em; margin-bottom: 5px;">Durability: 100</p>
                     
+                    <button onClick="refreshPickaxe()" style="width: 100%; background-color: #ffcc00; color: #1a120b; border: none; border-radius: 8px; padding: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer;">
+                      Refresh Pickaxe (5 Gold)
+                    </button>
+                </div>
+                <!-- mining resources gathered -->
+                <div id="miningResources" style="margin: 20px auto 0 auto; padding: 16px; background-color: #3d2a19; border-radius: 12px; max-width: 95%;">
+                    <h2 style="color: #ffcc00; font-size: 1.5em; margin-bottom: 10px;">Mining Resources</h2>
+                    <p style="color: #a1887f; font-size: 1em; margin-bottom: 15px;">View the resources you have gathered from your mining adventures.</p>
+                    <div id="gatheredResources" style="color: #a1887f; font-size: 1em; margin-bottom: 5px;">No resources gathered yet.</div>
+                </div>
+                <!-- grid for mining resources -->
+                 <div id="miningResourcesGrid" style="margin: 20px auto 0 auto; padding: 16px; background-color: #3d2a19; border-radius: 12px; max-width: 95%; display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px;">
+                <!-- java will directly put stuff here -->
+                </div>
+                
+                
+                
+                <!-- shopping cart -->
+                 <div id="shoppingCart" style="margin: 20px auto 0 auto; padding: 16px; background-color: #3d2a19; border-radius: 12px; max-width: 95%;">
+                    <h2 style="color: #ffcc00; font-size: 1.5em; margin-bottom: 10px;">Shopping Cart</h2>
+                    <p style="color: #a1887f; font-size: 1em; margin-bottom: 15px;">View the items you have added to your shopping cart.</p>
+                    <div id="cartItems" style="color: #a1887f; font-size: 1em; margin-bottom: 5px;">Your cart is empty.</div>
+                    <button onClick="checkoutCart()" style="width: 100%; background-color: #ffcc00; color: #1a120b; border: none; border-radius: 8px; padding: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer;">
+                        Checkout Cart
+                    </button>
+                </div>  <!-- add this-->
+
+                <!-- queue tab -->
+                           
+                         
                 <!-- queue tab -->
                  <div id="orderQueue" style="margin: 20px auto 0 auto; padding: 16px; background-color: #3d2a19; border-radius: 12px; max-width: 95%;">
                 <h2 style="color: #ffcc00; font-size: 1.5em; margin-bottom: 10px;">Order Queue</h2>
@@ -137,14 +194,18 @@
                         <p style="color: #6d5345; font-size: 0.85em; margin-top: 4px; text-align: center;">Place an order to light the forge.</p>
                     </div>
                 </div>
-                </div>
+        
                 <!-- Navbar or some navigation on the scrolling-->
                  <div style = "position: absolute; bottom: 0; left: 0; width: 100%; height: 75px; background-color: #1e130a; border-bottom-left-radius: 32px; border-bottom-right-radius: 32px; border-top: 2px solid #3d2a19; display: flex; justify-content: space-around; align-items: center; box-sizing: border-box; padding-bottom: 10px;">
-                    <button onClick="scrollToSection('swords')" style="background-color: #3d2a19; color: #ffcc00; border: none; border-radius: 8px; padding: 8px 16px; font-size: 1em; cursor: pointer;">Swords</button>
-                    <button onClick="scrollToSection('armor')" style="background-color: #3d2a19; color: #ffcc00; border: none; border-radius: 8px; padding: 8px 16px; font-size: 1em; cursor: pointer;">Armor</button>
-                    <button onClick="scrollToSection('cookbook')" style="background-color: #3d2a19; color: #ffcc00; border: none; border-radius: 8px; padding: 8px 16px; font-size: 1em; cursor: pointer;">Cookbook</button>
-                    <button onClick="scrollToSection('orderQueue')" style="background-color: #3d2a19; color: #ffcc00; border: none; border-radius: 8px; padding: 8px 16px; font-size: 1em; cursor: pointer;">Order Queue</button>
-                 </div>"
+                    <button onClick="scrollToSection('swords')" style="background-color: #3d2a19; color: #ffcc00; border: none; border-radius: 8px; padding: 8px 16px; font-size: 1em; cursor: pointer;">🗡️ </button>
+                    <button onClick="scrollToSection('armor')" style="background-color: #3d2a19; color: #ffcc00; border: none; border-radius: 8px; padding: 8px 16px; font-size: 1em; cursor: pointer;">🛡️</button>
+                    <button onClick="scrollToSection('cookbook')" style="background-color: #3d2a19; color: #ffcc00; border: none; border-radius: 8px; padding: 8px 16px; font-size: 1em; cursor: pointer;">📖</button>
+                    <button onClick="scrollToSection('orderQueue')" style="background-color: #3d2a19; color: #ffcc00; border: none; border-radius: 8px; padding: 8px 16px; font-size: 1em; cursor: pointer;">🛠️</button>
+                    <button onClick="scrollToSection('miningAdventure')" style="background-color: #3d2a19; color: #ffcc00; border: none; border-radius: 8px; padding: 8px 16px; font-size: 1em; cursor: pointer;">⛏️</button>
+                    <button onClick="scrollToSection('shoppingCart')" style="background-color: #3d2a19; color: #ffcc00; border: none; border-radius: 8px; padding: 8px 16px; font-size: 1em; cursor: pointer;">🛒</button>
+                    
+
+                </div>
 
                 
             </div>
@@ -159,7 +220,7 @@
 </html>
 
 
-<! -- javascript functionality -- >
+<!-- javascript functionality -->
 <script>
 
 
@@ -284,7 +345,7 @@ function addRecipe(){
 
 
 
-//Forge que
+//Forge queue
 let totalOrders = 0;
 function addOrderToQueue(customerName, itemName){
     const queueList = document.getElementById('orderQueue');
@@ -381,12 +442,217 @@ function startShop(){
 
 
 }
+ let miningResources = [
+        "Iron Ore",
+        "Gold Nugget",
+        "Silver Ore",
+        "Coal",
+        "Diamond",
+        "Emerald",
+        "Ruby",
+        "Sapphire"
+    ];
+    let playerInventory = [];
+    let pickaxeEnergy = 100; // Initial energy of the pickaxe
+    let pickaxeDurability = 100; // Initial durability of the pickaxe
 
+//function to start mining adventure
+function startMiningAdventure(){
+    buildMiningAdventure();
+    document.getElementById('miningResourcesGrid').style.display = 'grid'; // Show the mining grid
+    
+}
+//function to build the mining adventure
+function buildMiningAdventure(){
+
+    const gridArea = document.getElementById("miningResourcesGrid");
+    if(!gridArea) return; // If the grid area element doesn't exist, exit the function
+
+
+    gridArea.innerHTML = ""; // Clear the grid area for the mining adventure
+
+    //for resources using a for loop would be easy
+    for(let i = 1; i <= 12; i++){
+        const randomResource = miningResources[Math.floor(Math.random() * miningResources.length)];
+        //need a digblock function to move on
+        gridArea.innerHTML += `
+        <div id="dirt-block-${i}" class="dirt-block" onClick="digBlock(${i}, '${randomResource}')" style="height: 65px; background-color: #5c4033; border: 2px solid #3d2a19; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; user-select: none; transition: all 0.2s ease-in-out;">
+           ⬛
+        </div>
+        `;
+    }
+
+}
+
+function digBlock(blockId, foundResource){
+    const blockElement = document.getElementById(`dirt-block-${blockId}`);
+    if(!blockElement || blockElement.innerHTML.trim() === "⛏️" ) return; //skip this block if already dug
+    //verify if the player has enough pickaxe energy and durability to dig the block if out of durability or energy prevent dig and have the player spend like 5 gold to refresh durability and energy
+    if(pickaxeEnergy <= 0 || pickaxeDurability <= 0){
+        alert("Your pickaxe is out of durability! Spend 5 gold to refresh it.");
+        return;
+    }
+
+   
+    pickaxeDurability -= 5; // Reduce pickaxe durability by 5 for each dig
+
+    blockElement.innerHTML = "⛏️"; // Mark the block as dug
+    playerInventory.push(foundResource); // Add the found resource to the player's inventory
+    alert(`You found ${foundResource}!`);
+    
+    //dig the block and handle resource collection
+   const energyDisplay = document.getElementById("pickaxeEnergy");
+   const durabilityDisplay = document.getElementById("pickaxeDurability");
+   if(energyDisplay) energyDisplay.innerText = `Energy: ${pickaxeEnergy}`;
+   if(durabilityDisplay) durabilityDisplay.innerText = `Durability: ${pickaxeDurability}`;
+
+   updateInventoryDisplay(); // Update the inventory display after digging a block
+
+
+   //come back to later, making a display for the ores found and put them in gunters shop
+   if(typeof addOrderToQueue === "function"){
+    addOrderToQueue("Mining cart", foundResource);
+   }
+
+   
+
+}
+//pickaxe refresh with gold function
+function refreshPickaxe(){
+    if(userGold >= 5){
+        userGold -= 5;
+        
+        pickaxeDurability = 100;
+
+        const goldDisplay = document.getElementById("userGold");
+        if(goldDisplay) goldDisplay.innerText = userGold;
+
+        const durabilityDisplay = document.getElementById("pickaxeDurability");
+        
+        if(durabilityDisplay) durabilityDisplay.innerText = `Durability: ${pickaxeDurability}`;
+
+        buildMiningAdventure(); //gotta forge endlessly
+        alert("Your pickaxe durability has been refreshed!");
+    } else {
+        alert("You don't have enough gold to refresh your durability.");
+    }
+}
+
+
+
+
+
+function updateInventoryDisplay(){
+    const inventoryElement = document.getElementById("gatheredResources");
+    if(!inventoryElement) return; // If the inventory element doesn't exist, exit the function
+
+    inventoryElement.innerHTML = ""; // Clear the current inventory display
+    playerInventory.forEach(resource => {
+        inventoryElement.innerHTML += `<div style="background-color: #2c1d11; padding: 6px 12px; border-radius: 6px; margin-bottom: 4px; border-left: 2px solid #ffcc00; color: #f4ecd8; font-size: 0.9em; text-align: left;">
+            ${resource}
+            </div>`;
+    });
+}
+//Shopping cart stuff
+let cart = [];
+function addToCart(ItemName, price){
+    cart.push({name: ItemName, price: price});
+    renderCart();
+    alert(`${ItemName} has been added to your cart for ${price} Gold.`);
+   
+}
+
+function addSwordToCart(){
+    const blade = document.getElementById('bladeType').value;
+    const crossguard = document.getElementById('crossguardStyle').value;
+    const hilt = document.getElementById('hiltMaterial').value;
+    const runesInput = document.getElementById('runicEngravings').value.trim() || 'None';
+    const runes = (runesInput !== "") ? runesInput : 'None';
+
+    let swordCost = 0;
+    if(blade === "longsword") swordCost += 150;
+    else if(blade === "katana") swordCost += 200;
+    else if(blade === "rapier") swordCost += 120;
+
+    if(crossguard === "simple") swordCost += 20;
+    else if(crossguard === "ornate") swordCost += 50;
+    else if(crossguard === "spiked") swordCost += 40;
+
+    if(hilt === "leather") swordCost += 10;
+    else if(hilt === "wood") swordCost += 15;
+    else if(hilt === "metal") swordCost += 25;
+
+    if(runes !== "None") swordCost += 10;
+
+    addToCart(`${blade.charAt(0).toUpperCase() + blade.slice(1)} Sword with ${crossguard} Crossguard and ${hilt} Hilt, Engravings: ${runes}`, swordCost);
+}
+
+function addArmorToCart(){
+    const armorType = document.getElementById('armorType').value;
+    let armorCost = (armorType === "chainmail") ? 100 : 200;
+    addToCart(`${armorType.charAt(0).toUpperCase() + armorType.slice(1)} Armor`, armorCost);
+}
+
+function removeFromCart(index){
+    if(index >= 0 && index < cart.length){
+        const removedItem = cart.splice(index, 1)[0];
+        alert(`${removedItem.name} has been removed from your cart.`);
+        renderCart();
+        
+    }
+}
+
+function renderCart(){
+    const cartElement = document.getElementById("cartItems");
+    if(!cartElement) return; // If the cart element doesn't exist, exit the function
+
+    cartElement.innerHTML = ""; // Clear the current cart display
+    let totalCost = 0;
+
+    cart.forEach((item, index) => {
+        totalCost += item.price;
+        cartElement.innerHTML += `
+            <div style="margin-bottom: 8px; padding: 8px; background-color: #2c1d11; border-radius: 8px; color: #ffcc00; display: flex; justify-content: space-between; align-items: center;">
+                <span>${item.name} - ${item.price} Gold</span>
+                <button onClick="removeFromCart(${index})" style="background-color: #ffcc00; color: #1a120b; border: none; border-radius: 4px; padding: 4px 8px; cursor: pointer;">Remove</button>
+            </div>
+        `;
+    });
+
+    if(cart.length === 0){
+        cartElement.innerHTML = "<div>Your cart is empty.</div>";
+    } else {
+        cartElement.innerHTML += `<div style="margin-top: 10px; font-weight: bold;">Total Cost: ${totalCost} Gold</div>`;
+    }
+}
+let totalGoldSpent = 0; // Variable to track total gold spent
+function checkoutCart(){
+    if(cart.length === 0){
+        alert("Your cart is empty. Please add items to your cart before checking out.");
+        return;
+    }
+
+    let totalCost = 0;
+    cart.forEach(item => {
+        totalCost += item.price;
+    });
+
+    if(!deductGoldPurse(totalCost)){
+        alert("You don't have enough gold to complete this purchase!");
+        return;
+    }
+
+    alert(`Checkout successful! You spent ${totalCost} Gold. Thank you for your purchase!`);
+    totalGoldSpent += totalCost; // Update the total gold spent
+    cart.forEach(item => addOrderToQueue( "You", item.name))
+    cart = []; // Clear the cart after checkout
+    renderCart(); // Re-render the cart to show it's empty
+    
+}
 window.onload = function() {
     CookBookFeed(); // Initialize the feed on page load and hopefully it works
     startShop(); //start the showing up of people
-
-
+    
     addOrderToQueue("Needle knight Gwen", "Cooking pot");
 };
 
